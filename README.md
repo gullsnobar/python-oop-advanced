@@ -1,306 +1,335 @@
-# 🐍 Python OOP & Advanced Concepts
+# Python OOP and Advanced Concepts
 
-A practical learning repository covering **Python Object-Oriented Programming (OOP)** and important advanced Python concepts through simple, working examples.
+This repository contains my hands-on practice with Python Object-Oriented Programming and advanced Python concepts.
 
-The goal of this repository is not just to learn the syntax, but to understand **what each concept solves, why it is used, and where it is useful in real applications.**
+The purpose of this repository is to understand the concepts through code and keep a reference that I can use later for revision and interview preparation.
 
----
+## Topics Covered
 
-## 📚 Topics Covered
+### Object-Oriented Programming
 
-### 1. 🏗️ Classes
+* Classes and Objects
+* `__init__()`
+* `self`
+* Instance Attributes
+* Class Attributes
+* Instance Methods
+* Class Methods
+* Static Methods
+* Inheritance
+* Method Overriding
+* `super()`
 
-**What problem does it solve?**
+### Advanced Python
 
-A class provides a blueprint for creating objects with related data and behavior.
-
-```text
-CLASS
-  ↓
-Blueprint for creating objects
-  ↓
-Defines data + behavior
-```
-
----
-
-### 2. 📦 Objects
-
-**What is an instance?**
-
-An object is an actual instance created from a class.
-
-```text
-CLASS
-  ↓
-Creates
-  ↓
-OBJECT / INSTANCE
-```
+* Iterables
+* Iterators
+* Generators
+* List Comprehensions
+* Decorators
+* Multithreading
+* Multiprocessing
 
 ---
 
-### 3. ⚙️ `__init__()`
+## Concepts
 
-**Why is it used?**
+### 1. Classes and Objects
 
-`__init__()` initializes an object's data when the object is created.
+A class is a blueprint used to create objects.
 
-```text
-Object Creation
-      ↓
-   __init__()
-      ↓
-Initial Object State
-```
-
----
-
-### 4. 👤 `self`
-
-**What does it refer to?**
-
-`self` refers to the **current object/instance**.
-
-It allows each object to access and modify its own data.
-
-```text
-self.name
-self.email
-self.age
-```
-
----
-
-### 5. 🧩 Instance Attributes
-
-**What are they?**
-
-Instance attributes contain **object-specific data**.
-
-Different objects can have different values.
-
-```text
-User 1 → name = "Gull"
-User 2 → name = "Ali"
-```
-
----
-
-### 6. 🏛️ Class Attributes
-
-**What are they?**
-
-Class attributes belong to the class and can be **shared by its instances**.
-
-```text
-Class
-  ↓
-Shared Class Data
-  ↓
-Multiple Objects
-```
-
----
-
-### 7. 🏷️ `classmethod`
-
-**What is it used for?**
-
-A class method works with the **class itself** rather than a specific object.
-
-It receives `cls` as its first parameter.
+An object is an instance of a class that contains its own data and behavior.
 
 ```python
-@classmethod
-def method(cls):
-    ...
+class User:
+    def __init__(self, name):
+        self.name = name
+
+
+user = User("Gull")
+
+print(user.name)
 ```
+
+**Key points:**
+
+* Class defines the structure and behavior.
+* Object is an instance of that class.
+* Multiple objects can be created from the same class.
+
+File: `classes_objects.py`
 
 ---
 
-### 8. 🔧 `staticmethod`
+### 2. `__init__()` and `self`
 
-**What is it used for?**
+`__init__()` is used to initialize an object's data when the object is created.
 
-A static method does not need access to the instance or class state.
+`self` refers to the current object.
 
 ```python
-@staticmethod
-def method():
-    ...
+class User:
+    def __init__(self, name):
+        self.name = name
 ```
 
-It is useful for utility/helper functionality related to a class.
+Here, `self.name` is an instance attribute belonging to the current object.
+
+File: `instance_attributes.py`
 
 ---
 
-# 🔗 Inheritance & Polymorphism
+### 3. Instance Attributes
 
-### 9. 🌳 Inheritance
-
-**What problem does it solve?**
-
-Inheritance allows a child class to **reuse and extend behavior** from a parent class.
-
-```text
-Parent Class
-     ↓
-Child Class
-     ↓
-Reuses + Extends Behavior
-```
-
----
-
-### 10. 🔄 Method Overriding
-
-**What does it do?**
-
-Method overriding allows a child class to provide its **own implementation** of a method inherited from the parent.
-
-```text
-Parent Method
-     ↓
-Inherited by Child
-     ↓
-Child Changes Implementation
-```
-
----
-
-### 11. 🧬 `super()`
-
-**Why is it used?**
-
-`super()` allows a child class to access functionality from its parent class.
-
-```text
-Child Class
-     ↓
-super()
-     ↓
-Parent Implementation
-```
-
-It is commonly used when extending a parent's `__init__()` or another method.
-
----
-
-# 🔁 Iteration & Generators
-
-### 12. 🔄 Iterable
-
-**What is an iterable?**
-
-An iterable is an object whose values can be accessed one by one, usually using a `for` loop.
-
-Examples:
+Instance attributes belong to individual objects.
 
 ```python
-list
-tuple
-string
-dictionary
-set
+user1.name = "Gull"
+user2.name = "Ali"
 ```
 
-```text
-ITERABLE
-   ↓
-Can be iterated
-   ↓
-for loop
-```
+Each object can have different values.
+
+File: `instance_attributes.py`
 
 ---
 
-### 13. ➡️ Iterator
+### 4. Class Attributes
 
-**What is an iterator?**
+Class attributes belong to the class and can be shared by its objects.
 
-An iterator produces values one at a time using `next()`.
+```python
+class User:
+    role = "User"
+```
 
-```text
-ITERABLE
-   ↓
+Class attributes are useful when the same value or configuration should be available to multiple objects.
+
+File: `class_attributes.py`
+
+---
+
+### 5. Class Methods
+
+A class method works with the class rather than a specific object.
+
+It uses `cls` instead of `self`.
+
+```python
+class User:
+
+    @classmethod
+    def create_guest(cls):
+        return cls("Guest")
+```
+
+Class methods can also be used as alternative constructors.
+
+File: `classmethod.py`
+
+---
+
+### 6. Static Methods
+
+A static method does not automatically receive `self` or `cls`.
+
+It is useful for utility functionality related to a class.
+
+```python
+class Calculator:
+
+    @staticmethod
+    def add(a, b):
+        return a + b
+```
+
+File: `staticmethod.py`
+
+---
+
+### 7. Inheritance
+
+Inheritance allows a child class to reuse functionality from a parent class.
+
+```python
+class Employee:
+    def work(self):
+        print("Working")
+
+
+class Developer(Employee):
+    def code(self):
+        print("Writing code")
+```
+
+`Developer` inherits the `work()` method from `Employee`.
+
+File: `inheritance.py`
+
+---
+
+### 8. Method Overriding
+
+Method overriding happens when a child class provides its own implementation of a method that already exists in the parent class.
+
+```python
+class Employee:
+    def work(self):
+        print("Employee is working")
+
+
+class Developer(Employee):
+    def work(self):
+        print("Developer is writing code")
+```
+
+The child implementation replaces the inherited behavior when called on a `Developer` object.
+
+File: `overriding.py`
+
+---
+
+### 9. `super()`
+
+`super()` is used to access functionality from the parent class.
+
+It is commonly used when a child class needs to extend the parent's constructor or method.
+
+```python
+class Employee:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class Developer(Employee):
+
+    def __init__(self, name, language):
+        super().__init__(name)
+        self.language = language
+```
+
+File: `super.py`
+
+---
+
+## Advanced Python Concepts
+
+### 10. Iterables
+
+An iterable is an object that can be iterated over.
+
+Examples include:
+
+* Lists
+* Tuples
+* Strings
+* Dictionaries
+* Sets
+
+An iterable can be passed to `iter()` to obtain an iterator.
+
+File: `iterables.py`
+
+---
+
+### 11. Iterators
+
+An iterator produces values one at a time.
+
+Important functions and methods:
+
+```python
 iter()
-   ↓
-ITERATOR
-   ↓
 next()
-   ↓
-Next Value
+__iter__()
+__next__()
 ```
+
+When there are no more values, the iterator raises `StopIteration`.
+
+Example:
+
+```python
+numbers = [1, 2, 3]
+
+iterator = iter(numbers)
+
+print(next(iterator))
+print(next(iterator))
+print(next(iterator))
+```
+
+File: `iterators.py`
 
 ---
 
-### 14. ⚡ Generator
+### 12. Generators
 
-**What problem does it solve?**
+A generator produces values one at a time instead of creating all values at once.
 
-A generator produces values **lazily**, meaning values are generated only when needed.
+Generators use `yield`.
 
-Generators use the `yield` keyword.
-
-```text
-GENERATOR
-    ↓
-yield
-    ↓
-One Value at a Time
-    ↓
-Memory Efficient
+```python
+def numbers():
+    yield 1
+    yield 2
+    yield 3
 ```
+
+Generators are useful when working with large amounts of data because values can be generated when they are needed.
+
+File: `generators.py`
 
 ---
 
-# 📝 Python Expressions & Functions
+### 13. List Comprehensions
 
-### 15. 📋 List Comprehension
+List comprehensions provide a concise way to create lists.
 
-**What is it used for?**
-
-List comprehensions provide a concise way to create lists from existing iterables.
-
-Instead of writing:
+Instead of:
 
 ```python
 numbers = []
 
-for number in range(10):
+for number in range(5):
     numbers.append(number * 2)
 ```
 
-You can write:
+We can write:
 
 ```python
-numbers = [number * 2 for number in range(10)]
+numbers = [number * 2 for number in range(5)]
 ```
 
-```text
-LIST COMPREHENSION
-        ↓
-Concise List Creation
+They can also include conditions:
+
+```python
+even_numbers = [number for number in range(10) if number % 2 == 0]
 ```
+
+File: `list_comprehensions.py`
 
 ---
 
-### 16. 🎨 Decorator
+### 14. Decorators
 
-**What problem does it solve?**
+A decorator is a function that adds behavior to another function without changing its original implementation.
 
-A decorator allows us to **wrap and enhance the behavior of a function** without directly changing its original code.
+Basic structure:
 
-```text
-Original Function
-       ↓
-   Decorator
-       ↓
-Enhanced Function
+```python
+def decorator(function):
+
+    def wrapper(*args, **kwargs):
+        # additional behavior
+        result = function(*args, **kwargs)
+        return result
+
+    return wrapper
 ```
 
-Example:
+It can then be used with:
 
 ```python
 @decorator
@@ -308,120 +337,99 @@ def my_function():
     pass
 ```
 
+Decorators are commonly used for logging, authentication, permissions, and timing functions.
+
+File: `decorators.py`
+
 ---
 
-# ⚙️ Concurrency & Parallelism
+### 15. Multithreading
 
-### 17. 🧵 Thread
+Multithreading allows multiple threads to perform tasks concurrently within a process.
 
-**When is it useful?**
+It is particularly useful for I/O-bound tasks where the program spends time waiting.
 
-Threads are especially useful for handling **I/O-bound tasks**, where the program spends time waiting for operations such as:
+Examples:
 
-* API requests
-* Network operations
+* Network requests
 * File operations
-* Database operations
+* API calls
+* Downloading files
 
-```text
-THREAD
-   ↓
-I/O-Bound Work
-   ↓
-Waiting can overlap
+Basic structure:
+
+```python
+import threading
+
+thread = threading.Thread(target=my_function)
+
+thread.start()
+thread.join()
 ```
+
+Important methods:
+
+* `start()` starts the thread.
+* `join()` waits for the thread to finish.
+
+File: `threading_basics.py`
 
 ---
 
-### 18. ⚡ Process
+### 16. Multiprocessing
 
-**When is it useful?**
+Multiprocessing allows multiple processes to execute independently.
 
-Processes are useful for **CPU-bound work**, where the program needs significant CPU computation.
+It is useful for CPU-bound tasks that require significant processing power.
 
-Examples include:
+Examples:
 
-* Heavy calculations
-* CPU-intensive data processing
+* Large calculations
+* Data processing
 * Image processing
-* Computational tasks
+* Video processing
+
+Basic structure:
+
+```python
+import multiprocessing
+
+if __name__ == "__main__":
+
+    process = multiprocessing.Process(target=my_function)
+
+    process.start()
+    process.join()
+```
+
+Important methods:
+
+* `start()` starts the process.
+* `join()` waits for the process to finish.
+
+File: `multiprocessing_basics.py`
+
+---
+
+## Multithreading vs Multiprocessing
+
+| Multithreading                       | Multiprocessing                      |
+| ------------------------------------ | ------------------------------------ |
+| Uses multiple threads                | Uses multiple processes              |
+| Threads share process memory         | Processes have separate memory       |
+| Generally useful for I/O-bound tasks | Generally useful for CPU-bound tasks |
+| Lightweight compared to processes    | More resource-intensive              |
+
+Simple rule:
 
 ```text
-PROCESS
-   ↓
-CPU-Bound Work
-   ↓
-Parallel CPU Execution
+I/O-bound  → Multithreading
+CPU-bound  → Multiprocessing
 ```
 
 ---
 
-# 🗺️ Learning Roadmap
-
-The concepts in this repository follow this progression:
-
-```text
-                    PYTHON
-                       │
-                       ▼
-                   CLASS
-                       │
-                       ▼
-                    OBJECT
-                       │
-                       ▼
-                  __init__()
-                       │
-                       ▼
-                     self
-                       │
-              ┌────────┴────────┐
-              ▼                 ▼
-      INSTANCE ATTRIBUTE   CLASS ATTRIBUTE
-              │                 │
-              └────────┬────────┘
-                       ▼
-                classmethod
-                       │
-                       ▼
-                staticmethod
-                       │
-                       ▼
-                 INHERITANCE
-                       │
-                       ▼
-                  OVERRIDING
-                       │
-                       ▼
-                    super()
-                       │
-                       ▼
-                  ITERABLE
-                       │
-                       ▼
-                  ITERATOR
-                       │
-                       ▼
-                  GENERATOR
-                       │
-                       ▼
-             LIST COMPREHENSION
-                       │
-                       ▼
-                  DECORATOR
-                       │
-              ┌────────┴────────┐
-              ▼                 ▼
-            THREAD           PROCESS
-              │                 │
-           I/O-Bound         CPU-Bound
-```
-
----
-
-# 📁 Repository Structure
-
-Each major concept is demonstrated in its own Python file.
+## Repository Structure
 
 ```text
 python-oop-advanced/
@@ -442,38 +450,23 @@ python-oop-advanced/
 ├── iterators.py
 ├── generators.py
 ├── list_comprehensions.py
-│
 ├── decorators.py
-├── threading.py
-└── multiprocessing.py
+├── threading_basics.py
+└── multiprocessing_basics.py
 ```
 
-Each file contains **working Python code** demonstrating the related concept with practical examples.
+Each topic is implemented in a separate Python file so it can be studied and executed independently.
 
 ---
 
-# Learning Goals
+## Purpose
 
-By completing this repository, I aim to understand:
+This repository is mainly for:
 
-* How classes and objects work
-* How object state is managed
-* The difference between instance and class attributes
-* How `classmethod` and `staticmethod` work
-* How inheritance enables code reuse
-* How method overriding changes inherited behavior
-* How `super()` accesses parent implementations
-* The difference between iterables and iterators
-* How generators produce values lazily
-* How list comprehensions simplify list creation
-* How decorators modify or extend function behavior
-* When to use threads for I/O-bound tasks
-* When to use processes for CPU-bound tasks
+* Strengthening Python fundamentals
+* Practicing OOP concepts
+* Understanding advanced Python features
+* Keeping code examples for future revision
+* Preparing for Python technical interviews
 
----
-
-## Goal
-
-> **Understand the concept → Write the code → Run it → Experiment with it → Apply it in real projects.**
-
-This repository is focused on **practical understanding rather than memorizing Python syntax**.
+The focus is on understanding **what a concept does, why it is used, and how to implement it in Python**.
