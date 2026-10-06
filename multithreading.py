@@ -97,3 +97,17 @@ thread2.join()
 
 
 print("All tasks completed")
+
+
+# What to remember
+
+# threading.Thread()
+#        ↓
+#     start()
+#        ↓
+# Thread runs
+#        ↓
+#     join()
+#        ↓
+# Wait for completion
+
